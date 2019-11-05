@@ -1,0 +1,26 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: lucas-demopy-deployment
+spec:
+  selector:
+    matchLabels:
+      app: demopy
+  replicas: 2 
+  template:
+    metadata:
+      labels:
+        app: demopy
+    spec:
+      containers:
+      - name: demopyapp
+        image: acrdemolucas.azurecr.io/demopyapp:#{Build.BuildId}#
+        ports:
+        - containerPort: 5000
+        resources:
+            limits:
+              cpu: "0.5"
+              memory: 512Mi
+            requests:
+              cpu: "0.2"
+              memory: 256Mi

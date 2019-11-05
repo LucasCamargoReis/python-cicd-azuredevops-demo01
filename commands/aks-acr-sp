@@ -1,0 +1,30 @@
+az login
+az account set --subscription e4f68305-a249-439b-a1e1-162c32430922
+
+$RG="RG-LUCAS"
+$ACR="ACRDEMOLUCAS"
+$AKS="AKSDEMOLUCAS"
+$Location="westus"
+
+#CREATE CONTAINER REGISTRY
+az acr create --resource-group $RG --name $ACR --location $location 
+az acr login --name $ACR
+
+#CREATE PERMISSION TO AKS PULL CONTAINER FROM ACR 
+az ad sp create-for-rbac --skip-assignment
+
+$APPID="6f37ff48-5e11-4711-92d4-6824c20064d6" 
+$PASSWORD="3553403c-a476-475d-911c-0b9ce41d6006"
+$ACRID="/subscriptions/e4f68305-a249-439b-a1e1-162c32430922/resourceGroups/RG-LUCAS/providers/Microsoft.ContainerRegistry/registries/ACRDEMOLUCAS"
+
+az role assignment create --assignee $APPID --scope $ACRID --role acrpull
+
+az aks create --resource-group $RG --name $AKS --service-principal $appid --client-secret $password --node-vm-size Standard_B2s --node-count 2 --enable-addons monitoring --generate-ssh-keys --location $location 
+az aks enable-addons --resource-group $RG --name $AKS --addons http_application_routing
+
+az ad sp create-for-rbac -n acrdemolucas-pushuri --scopes $ACRID --role acrpush
+
+az network public-ip create --resource-group MC_RG-LUCAS_AKSDEMOLUCAS_westus --name mydemoapp-homol --allocation-method static --sku standard
+az network public-ip create --resource-group MC_RG-LUCAS_AKSDEMOLUCAS_westus --name mydemoapp-prod --allocation-method static --sku standard 
+
+
