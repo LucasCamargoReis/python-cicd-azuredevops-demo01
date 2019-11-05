@@ -4,7 +4,11 @@ metadata:
   name: demopy-svc
 spec:
   type: LoadBalancer
+<<<<<<< HEAD
   loadBalancerIP: 13.86.184.30
+=======
+  loadBalancerIP: 13.86.248.158
+>>>>>>> 368973a... Primeiro commit - fork demo docker python app
   ports:
   - port: 5000
   selector:
