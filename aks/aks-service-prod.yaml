@@ -4,7 +4,7 @@ metadata:
   name: demopy-svc
 spec:
   type: LoadBalancer
-  loadBalancerIP: 13.86.248.158
+  loadBalancerIP: 13.86.184.30
   ports:
   - port: 5000
   selector:

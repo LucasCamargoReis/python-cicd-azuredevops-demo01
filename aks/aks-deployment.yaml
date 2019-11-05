@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: demopy
-  replicas: 2 
+  replicas: 1 
   template:
     metadata:
       labels:
@@ -14,13 +14,13 @@ spec:
     spec:
       containers:
       - name: demopyapp
-        image: acrdemolucas.azurecr.io/demopyapp:#{Build.BuildId}#
+        image: acrlucasdemopy.azurecr.io/demopyapp:#{Build.BuildId}#
         ports:
         - containerPort: 5000
         resources:
             limits:
-              cpu: "0.5"
+              cpu: "0.2"
               memory: 512Mi
             requests:
-              cpu: "0.2"
+              cpu: "0.1"
               memory: 256Mi
