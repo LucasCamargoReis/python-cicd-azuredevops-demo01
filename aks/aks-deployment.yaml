@@ -6,11 +6,7 @@ spec:
   selector:
     matchLabels:
       app: demopy
-<<<<<<< HEAD
-  replicas: 1 
-=======
   replicas: 2 
->>>>>>> 368973a... Primeiro commit - fork demo docker python app
   template:
     metadata:
       labels:
@@ -18,24 +14,16 @@ spec:
     spec:
       containers:
       - name: demopyapp
-<<<<<<< HEAD
         image: acrlucasdemopy.azurecr.io/demopyapp:#{Build.BuildId}#
-=======
-        image: acrdemolucas.azurecr.io/demopyapp:#{Build.BuildId}#
->>>>>>> 368973a... Primeiro commit - fork demo docker python app
         ports:
         - containerPort: 5000
         resources:
             limits:
-<<<<<<< HEAD
               cpu: "0.2"
               memory: 512Mi
             requests:
-              cpu: "0.1"
-=======
               cpu: "0.5"
               memory: 512Mi
             requests:
               cpu: "0.2"
->>>>>>> 368973a... Primeiro commit - fork demo docker python app
               memory: 256Mi
