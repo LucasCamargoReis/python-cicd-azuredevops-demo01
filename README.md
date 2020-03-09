@@ -26,7 +26,7 @@ Este documento descreve o procedimento utilizado para fazer o deploy de um aplic
 **Passo 01**: Criar grupo de recursos 
 Execução do comando az group create para criar um novo grupo de recursos no Microsoft Azure.
 
-```bash 
+```yaml
 ##Declarar variaveis##
 $RG="RGLUCASDEMOPY"
 $ACR="ACRLUCASDEMOPY"
